@@ -18,12 +18,22 @@ main {
     margin: 10px;
 }
 
-footer {
-    background-color: rgb(108, 97, 145);
-    color:rgb(238, 226, 238);
-    font-family: Arial;
-    margin: 0px;
-    text-align: right;
+div.menu {
+    border: 1px solid;
+    border-radius: 5px;
+    width: 300px;
+    margin: 0 auto;
+    box-shadow: 10px 10px 5px #0002;
+    font-style: italic;
+}
+
+div.menu:hover {
+    background-color: rgb(241, 234, 241);
+    box-shadow: 0 0 15px #00000030;
+}
+
+h1 {
+    text-align: center;
 }
 a {
     text-decoration: none;
@@ -52,4 +62,12 @@ a:hover {
 a:active {
     color: black;
     opacity: 0.3;
+}
+
+footer {
+    background-color: rgb(108, 97, 145);
+    color:rgb(238, 226, 238);
+    font-family: Arial;
+    margin: 0px;
+    text-align: right;
 }
