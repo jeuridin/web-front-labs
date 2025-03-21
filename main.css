@@ -30,3 +30,24 @@ a {
     color: rgb(174, 143, 178);
     font-size: larger;
 }
+
+a:hover {
+    color: rgb(146, 27, 108);
+    box-shadow: 10px 10px 5px #0002;
+    background-color: rgb(220, 172, 218);
+    text-decoration: underline;
+}
+
+a:active {
+    color: black;
+    opacity: 0.3;
+}
+
+a:link {
+    color: blueviolet;
+}
+
+a:visited {
+    color: purple;
+    opacity: 0.8;
+}
