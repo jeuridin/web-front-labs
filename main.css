@@ -15,7 +15,7 @@ header {
 main {
     color: rgb(174, 143, 178);
     font-family: 'Times New Roman';
-    margin: 10px;
+    margin: 10px 20px 56px;
 }
 
 div.menu {
@@ -69,5 +69,10 @@ footer {
     color:rgb(238, 226, 238);
     font-family: Arial;
     margin: 0px;
+    padding: 10px;
     text-align: right;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    left: 0;
 }
