@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../main.css">
+        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+        <link rel="icon" href="../favicon-32x32.png">
+        <link rel="icon" href="../favicon.ico">
+        <title>Position</title>
+        <style>
+            header, footer {
+                z-index: 100;
+            }
+            div {
+                width: 300px;
+                height: 70px;
+                line-height: 70px;
+                text-align: center;
+                background-color: white;
+                border: 1px dotted black;
+                margin: 15px;
+                position: relative;
+                z-index: 1;
+            }
+            .position-relative {
+                position: relative;
+                left: 170px;
+                top: -130px;
+                z-index: 0;
+            }
+            .position-relative:hover {
+                z-index: 2;
+            }
+            .position-absolute {
+                position: absolute;
+                left: 300px;
+                transition: 3s;
+            }
+            .position-absolute:hover {
+                color: black;
+                background-color: cornflowerblue;
+                width: 400px;
+                height: 100px;
+                left: 500px;
+                z-index: 10;
+                box-shadow: 10px 10px 5px #0002;
+                transition: 3s;
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            НГТУ, ФБ, Лабораторная работа 4
+            <hr>
+        </header>
+
+        <main>
+            <div>static</div>
+            <div>static</div>
+            <div class="position-relative">relative</div>
+            <div>static</div>
+            <div>static</div>
+            <div class="position-absolute">static</div>
+            <div>static</div>
+            <div>static</div>
+            <div>static</div>
+            <div>static</div>
+        </main>
+        <footer>
+            &copy; Жанна Азарян, ФБИ-32, 2 курс, 2025
+        </footer>
+
+    </body>
+</html>
