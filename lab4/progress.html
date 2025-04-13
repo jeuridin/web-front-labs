@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../main.css">
+        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+        <link rel="icon" href="../favicon-32x32.png">
+        <link rel="icon" href="../favicon.ico">
+        <title>Прогресс</title>
+        <style>
+            .box {
+                width: 320px;
+                height: 150px;
+                border: 2px solid brown;
+                background-color: rgb(220, 207, 219);
+                padding: 10px;
+                position: relative;
+                text-align: center;
+                transform: translateX(-50%); 
+                left: 50%; 
+            }
+            .button {
+                width: 300px;
+                height: 40px;
+                background-color: rgb(21, 21, 103);
+                color: white;
+                text-align: center;
+                border-radius: 15px;
+                font-size: 20px;
+                box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
+                cursor: pointer;
+                margin-top: 30px;
+                margin-bottom: 10px;
+            }
+            .stepen {
+                color: rgb(166, 66, 66);
+                font-size: 28px;
+                text-align: center;
+                font-weight: bold;
+                margin: 17px;
+            }
+            .progress {
+                width: 300px;
+                height: 25px;
+                margin: 10px;
+                border: 1px solid brown;
+                position: relative;
+                top: -100px;
+            }
+            .f {
+                height: 100%;
+                width: 0%;
+                background: rgb(99, 13, 13);
+                transition: width 2s;
+            }
+            .button:active + .progress .f {
+                width: 100%;
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            НГТУ, ФБ, Лабораторная работа 4
+            <hr>
+        </header>
+        <main>
+            <div class="box">
+                <div class="stepen">Степень прогресса</div>
+                <button class="button">Нажмите и удерживайте</button>
+                <div class="progress">
+                    <div class="f"></div>
+                </div>
+            </div>
+        </main>
+        <footer>
+            &copy; Жанна Азарян, ФБИ-32, 2 курс, 2025
+        </footer>
+    </body>
+</html>
