@@ -10,128 +10,146 @@
         <title>Облако тегов</title>
         <style>
             .box {
-            position: relative; 
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
             }
             .name {
-                display: inline-block;
-                width: auto; 
-                transition: 0.3s;
-                cursor: pointer;
-                position: absolute;
-                animation-duration: 6s;
+            position: absolute;
+            width: auto; 
+            cursor: pointer;
+            transition: 0.3s ease;
+            animation-duration: 8s;
+            animation-iteration-count: infinite;
+            animation-direction: alternate;
+            animation-timing-function: ease-in-out;
             }
             .name:hover {
                 z-index: 100;
                 text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
-                transform: scale(1.5);
+                font-size: 4em;
+                animation-play-state: paused; 
             }
-            .minnie  {
-                width: 60px;
-                height: 60px;
-                border-radius: 50%;
-                position: absolute;
+            .minnie {
+                top: 10%;
+                left: 5%;
+                font-size: 30px;
+                animation-name: f1;
             }
-            .donald {color: aqua;
-                font-size: 100px;
-                top: 200px;
-                left: 30px;
-                position: relative;
-                transform: rotate(25deg);
+            .donald {
+                top: 20%;
+                left: 15%;
+                font-size: 40px;
+                color: aqua;
+                animation-name: f2;
             }
             .bob {
+                top: 30%;
+                left: 25%;
+                font-size: 45px;
                 color: brown;
-                font-size: 20px;
-                top: 200px;
-                left: 50px;
-                position: relative;
+                animation-name: f3;
             }
             .simba {
+                top: 40%;
+                left: 10%;
+                font-size: 38px;
                 color: tan;
-                font-size: 55px;
-                top: 100px;
-                left: 10px;
-                position: relative;
-                transform: rotate(-5deg);
+                animation-name: f4;
             }
             .shrek {
-                color: cornflowerblue;
-                font-size: 20px;
-                top: 100px;
-                left: 50px;
-                position: relative;
+                top: 50%;
+                left: 20%;
+                font-size: 35px;
+                color: green;
+                animation-name: f5;
             }
             .bazz {
-                color: darkgreen;
+                top: 15%;
+                left: 60%;
                 font-size: 36px;
-                top: 200px;
-                left: 90px;
-                position: relative;
-                transform: rotate(2deg);
+                color: darkgreen;
+                animation-name: f6;
             }
             .skubidu {
+                top: 70%;
+                left: 30%;
+                font-size: 32px;
                 color: lime;
-                font-size: 19px;
-                top: 120px;
-                left: 50px;
-                position: relative;
+                animation-name: f7;
             }
             .bel {
+                top: 35%;
+                left: 70%;
+                font-size: 48px;
                 color: slateblue;
-                font-size: 56px;
-                top: 100px;
-                left: 70px;
-                position: relative;
+                animation-name: f8;
             }
             .maui {
+                top: 60%;
+                left: 80%;
+                font-size: 40px;
                 color: yellowgreen;
-                font-size: 43px;
-                top: 10px;
-                left: 10px;
-                position: relative;
+                animation-name: f9;
             }
             .pikachu {
-                color: yellow;
-                font-size: 120px;
-                top: 350px;
-                left: 200px;
-                position: relative;
+                top: 75%;
+                left: 50%;
+                font-size: 50px;
+                color: gold;
+                animation-name: f10;
             }
             .elsa {
+                top: 20%;
+                left: 80%;
+                font-size: 45px;
                 color: thistle;
-                font-size: 57px;
-                top: 400px;
-                left: 600px;
-                position: relative;
-                transform: rotate(5deg);
+                animation-name: f11;
             }
             .olaf {
+                top: 45%;
+                left: 85%;
+                font-size: 43px;
                 color: coral;
-                font-size: 67px;
-                top: 100px;
-                left: 200px;
-                position: relative;
+                animation-name: f12;
             }
             .tom {
+                top: 55%;
+                left: 60%;
+                font-size: 37px;
                 color: darkgoldenrod;
-                font-size: 48px;
-                top: 400px;
-                left: 40px;
-                position: relative;
+                animation-name: f13;
             }
             .jerry {
+                top: 65%;
+                left: 70%;
+                font-size: 44px;
                 color: maroon;
-                font-size: 83px;
-                top: 200px;
-                left: 60px;
-                position: relative;
+                animation-name: f14;
             }
             .barash {
+                top: 80%;
+                left: 85%;
+                font-size: 42px;
                 color: darkmagenta;
-                font-size: 80px;
-                top: 60px;
-                left: 100px;
-                position: relative;
+                animation-name: f15;
             }
+            @keyframes f1 { 0% { transform: translate(0, 0) rotate(0deg); } 50% { transform: translate(200px, 80px) rotate(5deg); } 100% { transform: translate(0, 0) rotate(0deg); } }
+            @keyframes f2 { 0% { transform: translate(0, 0) rotate(0deg); } 50% { transform: translate(50px, -40px); } 100% { transform: translate(0, 0) rotate(0deg); } }
+            @keyframes f3 { 0% { transform: translate(0, 0) rotate(0deg); } 50% { transform: translate(60px, 100px); } 100% { transform: translate(0, 0) rotate(0deg); } }
+            @keyframes f4 { 0% { transform: translate(0, 0) rotate(0deg); } 50% { transform: translate(-200px, 90px) rotate(15deg); } 100% { transform: translate(0, 0) rotate(0deg); } }
+            @keyframes f5 { 0% { transform: translate(0, 0) rotate(0deg); } 50% { transform: translate(-50px, 30px); } 100% { transform: translate(0, 0) rotate(0deg); } }
+            @keyframes f6 { 0% { transform: translate(0, 0) rotate(0deg); } 50% { transform: translate(-120px, 50px); } 100% { transform: translate(0, 0) rotate(0deg); } }
+            @keyframes f7 { 0% { transform: translate(0, 0); } 50% { transform: translate(-90px, -60px); } 100% { transform: translate(0, 0) rotate(0deg); } }
+            @keyframes f8 { 0% { transform: translate(0, 0); } 50% { transform: translate(90px, -20px); } 100% { transform: translate(0, 0); } }
+            @keyframes f9 { 0% { transform: translate(0, 0) rotate(0deg); } 50% { transform: translate(-70px, -60px); } 100% { transform: translate(0, 0); } }
+            @keyframes f10 { 0% { transform: translate(0, 0) rotate(0deg); } 50% { transform: translate(-80px, -40px); } 100% { transform: translate(0, 0) rotate(0deg); } }
+            @keyframes f11 { 0% { transform: translate(0, 0) rotate(0deg); } 50% { transform: translate(-90px, 30px) rotate(-25deg); } 100% { transform: translate(0, 0); } }
+            @keyframes f12 { 0% { transform: translate(0, 0) rotate(0deg); } 50% { transform: translate(60px, -80px); } 100% { transform: translate(0, 0); } }
+            @keyframes f13 { 0% { transform: translate(0, 0); } 50% { transform: translate(-70px, -40px); } 100% { transform: translate(0, 0); } }
+            @keyframes f14 { 0% { transform: translate(0, 0); } 50% { transform: translate(40px, -40px); } 100% { transform: translate(0, 0); } }
+            @keyframes f15 { 0% { transform: translate(0, 0); } 50% { transform: translate(-60px, 60px); } 100% { transform: translate(0, 0); } }
         </style>
     </head>
     <body>
