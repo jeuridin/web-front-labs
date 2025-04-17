@@ -14,7 +14,7 @@
                 margin-right: 350px;
             }
             .c {
-                position: relative;
+                position: absolute;
                 display: inline-block;
             }
             .d1, .d2, .d3, .d4 {
@@ -60,18 +60,13 @@
                 justify-content: center;
                 text-align: center;
             }
-            .c:hover .d1 {
+            .c img:hover + .d1,
+            .c img:hover + .d1 + .d2,
+            .c img:hover + .d1 + .d2 + .d3,
+            .c img:hover + .d1 + .d2 + .d3 + .d4 {
                 opacity: 1;
             }
-            .c:hover .d2 {
-                opacity: 1;
-            }
-            .c:hover .d3 {
-                opacity: 1;
-            }
-            .c:hover .d4 {
-                opacity: 1;
-            }
+
         </style>
     </head>
     <body>
