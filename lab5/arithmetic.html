@@ -18,6 +18,23 @@
                 let result = a + b;
                 alert('Сумма ' + a + ' и ' + b + ' равна ' + result);
             }
+            function showRaz() {
+                let inputA = document.getElementById('numberA');
+                let inputB = document.getElementById('numberB');
+
+                let a = parseInt(inputA.value);
+                let b = parseInt(inputB.value);
+                let result = a - b;
+                alert('Разность ' + a + ' и ' + b + ' равна ' + result);
+            }
+            function showProiz() {
+                let inputA = document.getElementById('numberA');
+                let inputB = document.getElementById('numberB');
+                let a = parseInt(inputA.value);
+                let b = parseInt(inputB.value);
+                let result = a * b;
+                alert('Произведение ' + a + ' и ' + b + ' равно ' + result);
+            }
             function showAuthor() {
                 let author = 'Автор страницы:\nЖанна Азарян';
                 alert(author);
@@ -57,6 +74,7 @@
                     inputB.style.borderColor = 'red';
                     return;
                 }
+
                 inputA.style.color = '';
                 inputA.style.borderColor = '';
 
@@ -107,8 +125,17 @@
                 inputB.style.color = '';
                 inputB.style.borderColor = '';
 
-                let result = a**b
-                alert('Результат возведения в степень: ' + result)
+                let result = a**b;
+                alert('Результат возведения в степень: ' + result);
+            }
+            function changeOutput(buttonNum, backColor, textColor, borderStyle, borderRadius, borderWidth){
+                let output = document.getElementById('output');
+                output.innerHTML = 'Нажата кнопка ' + buttonNum;
+                output.style.backgroundColor = backColor;
+                output.style.color = textColor;
+                output.style.borderStyle = borderStyle;
+                output.style.borderRadius = borderRadius;
+                output.style.borderWidth = borderWidth;
             }
         </script>
         <style>
@@ -129,6 +156,11 @@
                 margin-right: 10px;
                 border: 1px solid black;
             }
+            #output {
+                border: 1px solid black;
+                width: 300px;
+                height: 40px;
+            }
         </style>
     </head>
     <body>
@@ -139,9 +171,19 @@
             <label>Первое число: <input type="number" value="5154" id="numberA"></label><br>
             <label>Второе число: <input type="number" value="7891" id="numberB"></label><br>
             <div class="message" onclick="showSum()">Найти сумму чисел</div>
+            <div class="message" onclick="showRaz()">Найти разность чисел</div>
+            <div class="message" onclick="showProiz()">Найти произведение чисел</div>
             <div class="message" onclick="showAuthor()">Узнать, кто автор страницы</div>
             <div class="message" onclick="showDiv()">Найти отношения чисел</div>
             <div class="message" onclick="showStepen()">Найти возведение в степень</div>
+
+            <div>
+                <input type="button" value="Кнопка 1" onclick="changeOutput(1, 'red', 'yellow', 'solid', '5px', '5px')">
+                <input type="button" value="Кнопка 2" onclick="changeOutput(2, 'purple', 'pink', 'dashed','10px', '16px')">
+                <input type="button" value="Кнопка 3" onclick="changeOutput(3, 'green', 'white', 'dotted','20px', '10px')">
+                <input type="button" value="Кнопка 4" onclick="changeOutput(4, 'white', 'red', 'solid','15px', '5px')">
+            </div>
+            <div id="output"></div>
         </main>
         <footer ondblclick="showFooter()">
             &copy; Жанна Азарян, 2 курс, ФБИ-32, 2025
