@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../main.css">
+        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+        <link rel="icon" href="../favicon-32x32.png">
+        <link rel="icon" href="../favicon.ico">
+        <title>Корзина</title>
+        <script>
+            function showCheck() {
+                let inputA = document.getElementById('numberA');
+                let inputB = document.getElementById('numberB');
+                let inputC = document.getElementById('numberC');
+                let inputD = document.getElementById('numberD');
+                let inputE = document.getElementById('numberE');
+                let a = parseInt(inputA.value);
+                let b = parseInt(inputB.value);
+                let c = parseInt(inputC.value);
+                let d = parseInt(inputD.value);
+                let e = parseInt(inputE.value);
+                let result = 100*a + 80*b + 150*c + 300*d + 260*e;
+                output.innerHTML = 'Общая цена: ' + result + ' руб';
+            }
+            function showClear() {
+                document.getElementById('numberA').value='';
+                document.getElementById('numberB').value='';
+                document.getElementById('numberC').value='';
+                document.getElementById('numberD').value='';
+                document.getElementById('numberE').value='';
+                document.getElementById('output').innerText='';
+            }
+        </script>
+        <style>
+            main {
+                color: black;
+            }
+            p, label {
+                margin-bottom: 0px;
+            }
+            div {
+                border: 2px solid black;
+                width: 300px;
+                height: 375px;
+                left: 40%;
+                position: relative;
+                padding-left: 20px;
+            }
+            #output {
+                border: 0px;
+                width: 200px;
+                height: 20px;
+                margin-top: 5px;
+                margin-left: -140px;
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            НГТУ, ФБ, Лабораторная работа 5
+        </header>
+        <main>
+            <div>
+                <h2>Корзина товаров</h2>
+                <p>Яблоки (100 р/шт)</p>
+                <label><input type="number" min="0" placeholder="Сколько надо яблок?" id="numberA" style="width: 250px;"></label><br>
+                <p>Груши (80 р/шт)</p>
+                <label><input type="number" min="0" placeholder="Сколько надо груш?" id="numberB" style="width: 250px;"></label><br>
+                <p>Апельсины (150 р/шт)</p>
+                <label><input type="number" min="0" placeholder="Сколько надо апельсинов?" id="numberC" style="width: 250px;"></label><br>
+                <p>Дыни (300 р/шт)</p>
+                <label><input type="number" min="0" placeholder="Сколько надо дынь?" id="numberD" style="width: 250px;"></label><br>
+                <p>Арбузы (260 р/шт)</p>
+                <label><input type="number" min="0" placeholder="Сколько надо арбузов?" id="numberE" style="width: 250px;"></label><br>
+                <input type="button" value="Рассчитать" onclick="showCheck()">
+                <input type="button" value="Очистить" onclick="showClear()">
+                <div id="output"></div>
+            </div>
+        </main>
+        <footer>
+            &copy; Жанна Азарян, ФБИ-32, 2 курс, 2025
+        </footer>
+    </body>
+</html>
