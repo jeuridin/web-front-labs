@@ -66,6 +66,50 @@
                 let result = a/b;
                 alert(a + ' / ' + b + ' = ' + result);
             }
+            function showStepen() {
+                let inputA = document.getElementById('numberA');
+                let inputB = document.getElementById('numberB');
+
+                let a = parseInt(inputA.value);
+                let b = parseInt(inputB.value);
+                if (a == 0 && b == 0) {
+                    alert('Неправильное возведение!');
+                    inputA.focus();
+                    inputA.select();
+                    inputA.style.color = 'red';
+                    inputA.style.borderColor = 'red';
+                    inputB.focus();
+                    inputB.select();
+                    inputB.style.color = 'red';
+                    inputB.style.borderColor = 'red';
+                    return;
+                }
+
+                if(isNaN(a)) {
+                    alert('Введите числовое значение в первое поле');
+                    inputA.focus();
+                    inputA.select();
+                    inputA.style.color = 'red';
+                    inputA.style.borderColor = 'red';
+                    return;
+                }
+                if(isNaN(b)) {
+                    alert('Введите числовое значение во второе поле');
+                    inputB.focus();
+                    inputB.select();
+                    inputB.style.color = 'red';
+                    inputB.style.borderColor = 'red';
+                    return;
+                }
+                inputA.style.color = '';
+                inputA.style.borderColor = '';
+
+                inputB.style.color = '';
+                inputB.style.borderColor = '';
+
+                let result = a**b
+                alert('Результат возведения в степень: ' + result)
+            }
         </script>
         <style>
             header, footer {
@@ -97,6 +141,7 @@
             <div class="message" onclick="showSum()">Найти сумму чисел</div>
             <div class="message" onclick="showAuthor()">Узнать, кто автор страницы</div>
             <div class="message" onclick="showDiv()">Найти отношения чисел</div>
+            <div class="message" onclick="showStepen()">Найти возведение в степень</div>
         </main>
         <footer ondblclick="showFooter()">
             &copy; Жанна Азарян, 2 курс, ФБИ-32, 2025
