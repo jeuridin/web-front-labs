@@ -15,8 +15,20 @@
                 let result = a + b;
                 alert('Сумма ' + a + ' и ' + b + ' равна ' + result);
             }
+            function showAuthor() {
+                let author = 'Автор страницы:\nЖанна Азарян';
+                alert(author);
+            }
+            function showFooter() {
+                let podval = 'Поздравляю вы в подвале!';
+                let dop = 'Бу!\n'
+                alert(dop + podval);
+            }
         </script>
         <style>
+            header, footer {
+                cursor: pointer;
+            }
             .message {
                 cursor: pointer;
                 display: inline-block;
@@ -34,14 +46,14 @@
         </style>
     </head>
     <body>
-        <header>
+        <header onclick="showAuthor()">
             НГТУ, ФБ, Лабораторная работа 5
         </header>
         <main>
             <div class="message" onclick="showSum()">Сколько будет 5154+7891?</div>
-            <div class="message">Узнать, кто автор страницы</div>
+            <div class="message" onclick="showAuthor()">Узнать, кто автор страницы</div>
         </main>
-        <footer>
+        <footer ondblclick="showFooter()">
             &copy; Жанна Азарян, 2 курс, ФБИ-32, 2025
         </footer>
     </body>
