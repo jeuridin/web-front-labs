@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../main.css">
+        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+        <link rel="icon" href="../favicon-32x32.png">
+        <link rel="icon" href="../favicon.ico">
+        <title>Событие</title>
+        <script>
+            function showCoords() {
+                let x = this.event.x;
+                let y = this.event.y;
+                let div = document.getElementById('block');
+                div.innerHTML = '<b>x<b> = ' + x + 'px<br><b>y<b> = ' + y + 'px';
+                
+                if(this.event.ctrlKey) {
+                    div.style.color = 'red';
+                    div.style.fontFamily = 'Times';
+                    div.innerHTML += '<br><b>Нажата клавиша Ctrl</b>';
+                }
+                else {
+                    div.style.backgroundColor = 'white';
+                    div.style.fontFamily = 'Times';
+                }
+
+                if(this.event.altKey) {
+                    div.style.color = 'green';
+                    div.style.borderWidth = '3px';
+                    div.innerHTML += '<br><i>Нажата клавиша Alt</i>';
+                }
+                else {
+                    div.style.backgroundColor = 'white';
+                    div.style.borderWidth = '1px';
+                }
+
+                if(this.event.shiftKey) {
+                    div.style.color = 'purple';
+                    div.style.backgroundColor = 'grey';
+                    div.innerHTML += '<br><i>Нажата клавиша Shift</i>';
+                }
+                else {
+                    div.style.backgroundColor = 'white';
+                }
+            }
+        </script>
+        <style>
+            #block {
+                height: 100px;
+                width: 100px;
+                border: 2px solid rgba(0, 0, 0, 0.133);
+                cursor: crosshair;
+                background-color: white;
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            НГТУ, ФБ, Лабораторная работа 5
+        </header>
+        <main>
+            <div id="block" onmousemove="showCoords()"></div>
+        </main>
+        <footer>
+            &copy; Жанна Азарян, ФБИ-32, 2 курс, 2025
+        </footer>
+    </body>
+</html>
