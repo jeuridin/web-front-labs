@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../main.css">
+        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+        <link rel="icon" href="../favicon-32x32.png">
+        <link rel="icon" href="../favicon.ico">
+        <title>Круги</title>
+        <script>
+            function showNothing(element) {
+                element.style.visibility = "hidden";
+                element.style.transform = "scale(0)";
+                element.style.transition = '0.7s'
+    
+            }
+            function showAll() {
+                    document.getElementById('a').style.visibility = 'visible';
+                    document.getElementById('a').style.transform = "scale(1)"
+                    document.getElementById('b').style.visibility = 'visible';
+                    document.getElementById('b').style.transform = "scale(1)"
+                    document.getElementById('c').style.visibility = 'visible';
+                    document.getElementById('c').style.transform = "scale(1)"
+                    document.getElementById('d').style.visibility = 'visible';
+                    document.getElementById('d').style.transform = "scale(1)"
+                    document.getElementById('e').style.visibility = 'visible';
+                    document.getElementById('e').style.transform = "scale(1)"
+                    document.getElementById('f').style.visibility = 'visible';
+                    document.getElementById('f').style.transform = "scale(1)"
+                    document.getElementById('g').style.visibility = 'visible';
+                    document.getElementById('g').style.transform = "scale(1)"
+                    document.getElementById('h').style.visibility = 'visible';
+                    document.getElementById('h').style.transform = "scale(1)"
+                    document.getElementById('i').style.visibility = 'visible';
+                    document.getElementById('i').style.transform = "scale(1)"
+                    document.getElementById('j').style.visibility = 'visible';
+                    document.getElementById('j').style.transform = "scale(1)"
+            }
+        </script>
+        <style>
+            .tag {
+                cursor: pointer;
+                border: 5px solid #0001;
+                border-radius: 100%;
+                width: 40px;
+                height: 40px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-family: 'Times New Roman';
+                color: white;
+                position: relative;
+            }
+            #a {
+                background-color: blue;
+                left: 200px;
+                top: 100px;
+            }
+            #b {
+                background-color: dimgrey;
+                left: 300px;
+                top: 400px;
+            }
+            #c {
+                background-color: brown;
+                left: 100px;
+                top: 50px;
+            }
+            #d {
+                background-color: rgb(213, 140, 240);
+                left: 700px;
+                top: 200px;
+            }
+            #e {
+                background-color: aqua;
+                left: 400px;
+                top: 10px;
+            }
+            #f {
+                background-color: mediumorchid;
+                left: 350px;
+                top: -200px;
+            }
+            #g {
+                background-color: rgb(31, 136, 130);
+                left: 800px;
+                top: -300px;
+            }
+            #h {
+                background-color: springgreen;
+                left: 500px;
+                top: -110px;
+            }
+            #i {
+                background-color: darkslateblue;
+                left: 1000px;
+                top: -100px;
+            }
+            #j {
+                background-color: tomato;
+                left: 1200px;
+                top: -100px;
+            }
+            button {
+                cursor: pointer;
+                color:rgb(238, 226, 238);
+                font-weight: bold;
+                font-family: 'Times New Roman';
+                font-size: 18px;
+                background-color: rgb(108, 97, 145);
+                border: 4px solid #0001;
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            НГТУ, ФБ, Лабораторная работа 5
+        </header>
+        <main>
+            <button onclick="showAll()">Вернуть</button>
+            <div class="tag" id='a' onclick="showNothing(this)">1</div>
+            <div class="tag" id="b" onclick="showNothing(this)">2</div>
+            <div class="tag" id="c" onclick="showNothing(this)">3</div>
+            <div class="tag" id="d" onclick="showNothing(this)">4</div>
+            <div class="tag" id="e" onclick="showNothing(this)">5</div>
+            <div class="tag" id="f" onclick="showNothing(this)">6</div>
+            <div class="tag" id="g" onclick="showNothing(this)">7</div>
+            <div class="tag" id="h" onclick="showNothing(this)">8</div>
+            <div class="tag" id="i" onclick="showNothing(this)">9</div>
+            <div class="tag" id="j" onclick="showNothing(this)">10</div>
+        </main>
+        <footer>
+            &copy; Жанна Азарян, ФБИ-32, 2 курс, 2025
+        </footer>
+    </body>
+</html>
