@@ -15,11 +15,11 @@
                 let inputC = document.getElementById('numberC');
                 let inputD = document.getElementById('numberD');
                 let inputE = document.getElementById('numberE');
-                let a = parseInt(inputA.value);
-                let b = parseInt(inputB.value);
-                let c = parseInt(inputC.value);
-                let d = parseInt(inputD.value);
-                let e = parseInt(inputE.value);
+                let a = parseInt(inputA.value) || 0;
+                let b = parseInt(inputB.value) || 0;
+                let c = parseInt(inputC.value) || 0;
+                let d = parseInt(inputD.value) || 0;
+                let e = parseInt(inputE.value) || 0;
                 let result = 100*a + 80*b + 150*c + 300*d + 260*e;
                 output.innerHTML = 'Общая цена: ' + result + ' руб';
             }
