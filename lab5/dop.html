@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../main.css">
+        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+        <link rel="icon" href="../favicon-32x32.png">
+        <link rel="icon" href="../favicon.ico">
+        <title>Дополнительное задание</title>
+        <style>
+            main {
+            text-align: center;
+            }
+            img {
+            width: 500px;
+            height: 500px;
+            transition: filter 0.2s;
+            border: 2px solid #ccc;
+            }
+            .info {
+            font-size: 18px;
+            margin-top: 10px;
+            }
+            .help {
+            margin-top: 20px;
+            color: #555;
+            }
+        </style>
+        <script>
+            let imageElement;
+            let infoElement;
+
+            function onPageLoad() {
+                imageElement = document.getElementById("myImage");
+                infoElement = document.getElementById("info");
+                imageElement.onmousemove = onImageMouseMove;
+            }
+            function onImageMouseMove(event) {
+                let rect = imageElement.getBoundingClientRect();
+                let x = event.clientX - rect.left;
+                let percent = x / rect.width;
+
+                let filterType = "blur";
+                let filterValue = (percent * 10).toFixed(1) + "px";
+
+                if (event.ctrlKey) {
+                    filterType = "grayscale";
+                    filterValue = Math.round(percent * 100) + "%";
+                } else if (event.altKey) {
+                    filterType = "sepia";
+                    filterValue = Math.round(percent * 100) + "%";
+                } else if (event.shiftKey) {
+                    filterType = "hue-rotate";
+                    filterValue = Math.round(percent * 360) + "deg";
+                }
+                imageElement.style.filter = filterType + "(" + filterValue + ")";
+                infoElement.textContent = "Фильтр: " + filterType + "(" + filterValue + ")";
+            }
+            window.onload = onPageLoad;
+        </script>
+    </head>
+    <body>
+        <header>
+                НГТУ, Лабораторная работа 5
+        </header>
+        <main>
+            <h1>Изменение фильтра на изображении</h1>
+            <img id="myImage" src="second.jpg">
+            <div class="info" id="info">Фильтр: none</div>
+            <div class="help">
+                Наведите мышку на картинку.<br>
+                Чем мышь правее — тем сильнее эффект.<br>
+                Удерживайте <b>Ctrl</b> для grayscale, <b>Alt</b> для sepia, <b>Shift</b> для hue-rotate.
+            </div>
+        </main>
+        <footer>
+            &copy; Жанна Азарян, ФБИ-32, 2 курс, 2025
+        </footer>
+    </body>
+</html>
