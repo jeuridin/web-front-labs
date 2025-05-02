@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../main.css">
+        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+        <link rel="icon" href="../favicon-32x32.png">
+        <link rel="icon" href="../favicon.ico">
+        <title>Таблица умножения</title>
+        <script>
+            function showMutipleTable() {
+                let tbl = document.getElementById('mtable');
+                tbl.innerHTML = '<h1>Таблица умножения</h1>';
+                for(i = 1; i <= 10; i++) {
+                    let s = `<div>${i} * 7 = ${i*7}</div>`;
+                    tbl.innerHTML += s;
+                }
+            }
+            showMutipleTable()
+        </script>
+        <style>
+            main {
+                color: black;
+            }
+        </style>
+    </head>
+    <body onload="showMutipleTable()">
+        <header>НГТУ, Лабораторная работа 6</header>
+        <main>
+            <div id="mtable"></div>
+        </main>
+        <footer>
+            &copy; Жанна Азарян, ФБИ-32, 2 курс 2925
+        </footer>
+    </body>
+</html>
