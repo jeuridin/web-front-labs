@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="main.css">
+        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+        <link rel="icon" href="favicon-32x32.png">
+        <link rel="icon" href="favicon.ico">
+        <title>РОСНЕФТЬ</title>
+        <style>
+            .box {
+                background-color: #ffd9709a;
+                border-radius: 50px;
+                margin-top: 50px;
+                padding: 40px 50px 40px 50px;
+                box-shadow: 10px 5px 5px #0002;
+                margin-left: 100px;
+                margin-right: 90px;
+                margin-bottom: 10px;
+                border-radius: 20px;
+            }
+            .box2 {
+                display: flex;
+            }
+            #convertToRubBtn, #convertToSekBtn {
+                background-color: #facf49;
+                width: 210px;
+                height: 40px;
+                box-shadow: 10px 5px 5px #0002;
+                font-size: 14px;
+                font-family: 'Times New Roman';
+                font-weight: bold;
+                border-radius: 10px;
+                position: relative;
+            }
+            #sum {
+                width: 100px;
+                padding: 10px;
+                margin: 5px;
+            }
+        </style>
+       <script>
+            let kursSEK = 0;
+
+            async function downloadkursSEK() {
+                const res = await fetch('https://www.cbr-xml-daily.ru/daily_json.js');
+                const data = await res.json();
+                kursSEK = data.Valute.SEK.Value;
+            }
+
+            function convertToRub() {
+                const sum = document.getElementById('sum').value;
+                if (sum <= 0 || isNaN(sum)) {
+                    document.getElementById('output').textContent = `Введите положительное число`;
+                    return;
+                }
+                const result = (sum * kursSEK / 10).toFixed(2);
+                document.getElementById('output').textContent = `${sum} SEK = ${result} RUB`;
+            }
+
+            function convertToSek() {
+                const sum = document.getElementById('sum').value;
+                if (sum <= 0 || isNaN(sum)) {
+                    document.getElementById('output').textContent = `Введите положительное число`;
+                    return;
+                }
+                const result = (sum * 10 / kursSEK).toFixed(2);
+                document.getElementById('output').textContent = `${sum} RUB = ${result} SEK`;
+            }
+
+            window.onload = downloadkursSEK;
+    </script>
+        </script>
+
+    </head>
+    <body>
+        <header>
+            НГТУ, РГЗ
+        </header>
+        <main>
+            <div class="numbers">
+                <div class="image">
+                    <img src="logo.png" alt="Логотип">
+                </div>
+                <div class="info">
+                    <div class="num1">8 (499) 517-88-99</div>
+                    <div class="sic">Единый справочно-информационный центр</div>
+                </div>
+                <div class="info1">
+                    <div class="num2">8 (800) 500-25-45</div>
+                    <div class="gorline">
+                        Горячая линия безопасности ПАО «НК «РОСНЕФТЬ»
+                    </div>
+                </div>
+                <div class="info2">
+                    <div class="num3">8 (800) 775-75-88</div>
+                    <div class="edgorline">
+                        Единая горячая линия службы поддержки АЗС
+                    </div>
+                </div>
+                <div class="info3">
+                    <div class="num4">8 (800) 500-11-00</div>
+                    <div class="phone">Телефон для акционеров (звонок по России бесплатный)</div>
+                </div>
+            </div>
+            <div class="box">    
+                <h2>Конвертер валют (RUB ⇄ SEK)</h2>
+                <div class="box2">
+                    <input type="number" id="sum" placeholder="Введите сумму" min="0" style="width: 250px;">
+                    <button onclick="convertToRub()" id="convertToRubBtn">SEK → RUB</button>
+                    <button onclick="convertToSek()" id="convertToSekBtn">RUB → SEK</button>
+                </div>
+                <div id="output"></div>
+            </div>
+
+            <ul id="menu">
+                <li><a href="rgz.html">Главная</a></li>
+                <li><a href="about.html">О компании</a></li>
+                <li><a href="news.html">Новости</a></li>
+                <li><a href="kurs.html">Курсы валют</a></li>
+                <li><a href="contacts.html">Контакты</a></li>
+                <li><a href="video.html">Видео</a></li>
+                </ul>
+        </main>
+
+        <a href="#" id="toTop">↑</a>
+        <footer>
+            &copy; Жанна Азарян, ФБИ-32, 2 курс, 2025
+        </footer>
+    </body>
+</html>
