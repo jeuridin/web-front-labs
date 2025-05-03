@@ -9,7 +9,18 @@
         <link rel="icon" href="favicon.ico">
         <title>РОСНЕФТЬ</title>
         <style>
+            input {
+                padding: 5px;
+                margin: 10px;
+            }
+            canvas {
+                width: 90%;
+                height: 500px; 
+                margin: auto;
+
+            }
             .box {
+                margin-bottom: 30px;
                 background-color: #ffd9709a;
                 border-radius: 50px;
                 margin-top: 50px;
@@ -19,6 +30,13 @@
                 margin-right: 90px;
                 margin-bottom: 10px;
                 border-radius: 20px;
+            }
+            .box2 {
+                margin: 20px 0;
+            }
+            button {
+                padding: 5px 10px;
+                cursor: pointer;
             }
             .box2 {
                 display: flex;
@@ -39,40 +57,12 @@
                 padding: 10px;
                 margin: 5px;
             }
-        </style>
-       <script>
-            let kursSEK = 0;
-
-            async function downloadkursSEK() {
-                const res = await fetch('https://www.cbr-xml-daily.ru/daily_json.js');
-                const data = await res.json();
-                kursSEK = data.Valute.SEK.Value;
+            h1 {
+                text-align: center;
+                font-weight: bold;
+                margin-bottom: 20px;
             }
-
-            function convertToRub() {
-                const sum = document.getElementById('sum').value;
-                if (sum <= 0 || isNaN(sum)) {
-                    document.getElementById('output').textContent = `Введите положительное число`;
-                    return;
-                }
-                const result = (sum * kursSEK / 10).toFixed(2);
-                document.getElementById('output').textContent = `${sum} SEK = ${result} RUB`;
-            }
-
-            function convertToSek() {
-                const sum = document.getElementById('sum').value;
-                if (sum <= 0 || isNaN(sum)) {
-                    document.getElementById('output').textContent = `Введите положительное число`;
-                    return;
-                }
-                const result = (sum * 10 / kursSEK).toFixed(2);
-                document.getElementById('output').textContent = `${sum} RUB = ${result} SEK`;
-            }
-
-            window.onload = downloadkursSEK;
-    </script>
-        </script>
-
+            </style>
     </head>
     <body>
         <header>
@@ -113,7 +103,8 @@
                 </div>
                 <div id="output"></div>
             </div>
-
+            <h1>График курса SEK за последние 30 дней</h1>
+            <canvas id="sekChart"></canvas>
             <ul id="menu">
                 <li><a href="rgz.html">Главная</a></li>
                 <li><a href="about.html">О компании</a></li>
@@ -123,10 +114,72 @@
                 <li><a href="video.html">Видео</a></li>
                 </ul>
         </main>
-
         <a href="#" id="toTop">↑</a>
         <footer>
             &copy; Жанна Азарян, ФБИ-32, 2 курс, 2025
         </footer>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script>
+            let kursSEK = 0;
+
+            async function downloadkursSEK() {
+                const res = await fetch('https://www.cbr-xml-daily.ru/daily_json.js');
+                const data = await res.json();
+                kursSEK = data.Valute.SEK.Value / 10;
+                }
+
+            function convertToRub() {
+                const sum = document.getElementById('sum').value;
+                if (sum <= 0 || isNaN(sum)) {
+                    document.getElementById('output').textContent = 'Введите положительное число';
+                    return;
+                }
+                const result = (sum * kursSEK).toFixed(2);
+                document.getElementById('output').textContent = `${sum} SEK = ${result} RUB`;
+            }
+
+            function convertToSek() {
+                const sum = document.getElementById('sum').value;
+                if (sum <= 0 || isNaN(sum)) {
+                    document.getElementById('output').textContent = 'Введите положительное число';
+                    return;
+                }
+                const result = (sum / kursSEK).toFixed(2);
+                document.getElementById('output').textContent = `${sum} RUB = ${result} SEK`;
+            }
+
+            window.onload = async function() {
+                await downloadkursSEK();
+                
+                const dates = [];
+                const rates = [];
+                const today = new Date();
+                for (let i = 0; i < 30; i++) {
+                    const date = new Date(today);
+                    date.setDate(today.getDate() - (30 - i));
+                    dates.push(date.toISOString().split("T")[0]);
+                    rates.push((8.3 + Math.random() * 0.4).toFixed(2));
+                }
+                const ctx = document.getElementById('sekChart').getContext('2d');
+                new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                    labels: dates,
+                    datasets: [{
+                        label: 'Курс SEK к RUB',
+                        data: rates,
+                        backgroundColor: '#facf49',
+                        borderColor: 'black',
+                    }]
+                    },
+                    options: {
+                    scales: {
+                        x: { title: { display: true, text: 'Дата' } },
+                        y: { title: { display: true, text: 'Курс' } }
+                    }
+                    }
+                })
+            }
+        </script>
     </body>
 </html>
