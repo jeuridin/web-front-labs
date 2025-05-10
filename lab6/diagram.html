@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../main.css">
+        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+        <link rel="icon" href="../favicon-32x32.png">
+        <link rel="icon" href="../favicon.ico">
+        <title>Диаграмма</title>
+        <style>
+            #diag {
+                display: flex;
+                align-items: flex-end;
+                height: 600px;
+            }
+            .bar {
+                width: 200px;
+                margin: 5px;
+                text-align: center;
+                padding-top: 9px;
+                color: #000000;
+                background-color: blue;
+            }
+        </style>
+        <script>
+            function showDiagram() {
+                let data = [50, 33, 200, 150, 120, 43, 28, 50, 36, 23];
+                let colors = ['red', 'purple', 'green', 'blue', 'pink', 'brown', 'orange', 'yellow', 'lightblue', 'lightgreen'];
+                let bars = document.getElementsByClassName('bar');
+                const diagHeight = document.getElementById('diag').clientHeight;
+                const maxData = Math.max(...data);
+                const k = diagHeight / maxData * 0.9;
+                for(let i = 0; i < data.length; i++) {
+                    bars[i].style.height = k*data[i] + 'px';
+                    bars[i].style.backgroundColor = colors[i % colors.length];
+                    bars[i].innerText = data[i];
+                }
+            }
+        </script>
+    </head>
+    <body onload="showDiagram()">
+        <header>НГТУ, ФБ, Лабораторная работа 6</header>
+        <main>
+            <div id="diag">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>            
+        </main>
+        <footer>&copy; Жанна Азарян, ФБИ-32, 2 курс, 2025</footer>
+    </body>
+</html>
