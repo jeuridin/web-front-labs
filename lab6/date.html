@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../main.css">
+        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+        <link rel="icon" href="../favicon-32x32.png">
+        <link rel="icon" href="../favicon.ico">
+        <title>Document</title>
+        <script>
+            function showDate() {
+                let out = document.getElementById('current-date');
+                let today = new Date();
+                let rus = today.toLocaleString('ru-RU')
+                let arm = today.toLocaleString('hy-AM')
+                let kz = today.toLocaleString('kk-KZ')
+                let kg = today.toLocaleString('ky-KG')
+                let kr = today.toLocaleString('ko-KR')
+                out.innerHTML = `
+                    Дата и время для русской локали: ${ rus }<br>
+                    Дата и время для армянской локали: ${ arm }<br>
+                    Дата и время для казахской локали: ${ kz }<br>
+                    Дата и время для кыргызской локали: ${ kg }<br>
+                    Дата и время для корейской локали: ${ kr }
+                `;
+            }
+        </script>
+        <style>
+            div {
+                color: black;
+                text-align: center;
+                font-size: 25px;
+                font-style: italic;
+            }
+        </style>
+    </head>
+    <body onload="showDate()">
+        <header>НГТУ, ФБ, Лабораторная работа 6</header>
+        <main>
+            <div id="current-date"></div>
+        </main>
+        <footer>&copy; Жанна Азарян, ФБИ-32, 2 курс, 2025</footer>
+    </body>
+</html>
