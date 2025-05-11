@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../main.css">
+        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+        <link rel="icon" href="../favicon-32x32.png">
+        <link rel="icon" href="../favicon.ico">
+        <title>Книги</title>
+        <script src="books.js"></script>
+        <script>
+            function showBooks() {
+                const bookList = document.getElementById('bookList');
+                for(let i = 0; i < books.length; i++) {
+                    let extraClass = books[i].bestseller ? 'bestseller' : 'notbest';
+                    if (!books[i].available) {
+                        extraClass += ' outofstock';
+                    }
+                    bookList.innerHTML += `
+                        <div class='book ${extraClass}'>
+                            <b>${ books[i].author }.</b>
+                            <i>${ books[i].name }</i>
+                            &mdash; ${ books[i].publicationYear }
+                            <br><span class='price'>${books[i].price}</span>
+                        </div>
+                    `
+                }
+            }
+        </script>
+        <style>
+            #bookList {
+                display: flex;
+                flex-direction: column;
+                gap: 15px;
+                color: black;
+            }
+            .book {
+                padding: 15px;
+                border-radius: 10px;
+            }
+            .bestseller {
+                background-color: #d2f5c4;
+                border-left: 6px solid #4CAF50;
+            }
+            .notbest {
+                background-color: #e0e0e0; 
+                border-left: 6px solid #999;
+            }
+            .outofstock {
+                opacity: 0.6;
+                font-style: italic;
+            }
+            .outofstock::after {
+                content: " (Нет в наличии)";
+                color: red;
+                font-weight: bold;
+            }
+            .price {
+                font-weight: bold;
+            }
+        </style>
+    </head>
+    <body onload="showBooks()">
+        <header>НГТУ, ФБ, Лабораторная работа 6</header>
+        <main>
+            <h1>Список книг</h1>
+            <div id="bookList"></div>
+        </main>
+        <footer>
+            &copy; Жанна Азарян, ФБИ-32, 2 курс, 2025
+        </footer>
+    </body>
+</html>
