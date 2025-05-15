@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,7 +12,7 @@
             main {
                 border: 2px solid #99c;
                 padding: 20px;
-                max-width: 700px;
+                max-width: 900px;
                 margin: auto;
                 color: black;
                 text-align: center;
@@ -27,18 +27,18 @@
             }
             .bar {
                 position: relative;
-                width: 20px;
+                width: 50px;
                 margin: 0 4px;
                 display: flex;
                 flex-direction: column;
                 align-items: center;
             }
             .min-temp {
-                background-color: rgb(0, 0, 255);
+                background-color: rgb(84, 84, 227);
                 width: 100%;
             }
             .max-temp {
-                background-color: rgb(236, 0, 0);
+                background-color: rgb(218, 101, 101);
                 width: 100%;
             }
             .bar.selected .min-temp {
@@ -52,7 +52,7 @@
                 position: absolute;
                 color: black;
                 font-size: 10px;
-                top: -15px;
+                top: -10px;
                 font-weight: bold;
             }
     
@@ -97,11 +97,17 @@
                     maxBar.className = 'max-temp';
                     maxBar.style.height = ((temp.max - temp.min) * heightRatio) + 'px';
 
-                    const label = document.createElement('div');
-                    label.className = 'temp-label';
-                    label.textContent = `${temp.max}°C`;
+                    const maxLabel = document.createElement('div');
+                    maxLabel.className = 'temp-label';
+                    maxLabel.textContent = `${temp.max}°C`;
+                    
+                    const minLabel = document.createElement('div');
+                    minLabel.className = 'temp-label';
+                    minLabel.textContent = `${temp.min}°C`;
+                    minLabel.style.top = `${(temp.max - temp.min) * heightRatio - 10}px`;
 
-                    bar.appendChild(label);
+                    bar.appendChild(maxLabel);
+                    bar.appendChild(minLabel)
                     bar.appendChild(maxBar);
                     bar.appendChild(minBar);
                     chart.appendChild(bar);
