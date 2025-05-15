@@ -13,7 +13,12 @@
             function showBooks() {
                 const bookList = document.getElementById('bookList');
                 for(let i = 0; i < books.length; i++) {
-                    let extraClass = books[i].bestseller ? 'bestseller' : 'notbest';
+                    let extraClass = 'books';
+                    if (books[i].bestseller) {
+                        extraClass += ' bestseller';
+                    } else {
+                        extraClass += ' notbest';
+                    }
                     if (!books[i].available) {
                         extraClass += ' outofstock';
                     }
