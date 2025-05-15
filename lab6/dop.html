@@ -123,8 +123,9 @@
     
         function findBtn() {
             const value = parseInt(document.getElementById('dayInput').value);
-            if (value < 1 || value > 30) return;
-    
+            if (value < 1 || value > 30) {
+                return;
+            }
             const chart = document.getElementById('chart');
             const info = document.getElementById('info');
             const index = value - 1;
