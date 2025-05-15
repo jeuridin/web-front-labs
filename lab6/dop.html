@@ -1,161 +1,161 @@
 <!DOCTYPE html>
 <html lang="ru">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="../main.css">
-        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-        <link rel="icon" href="../favicon-32x32.png">
-        <link rel="icon" href="../favicon.ico">
-        <title>Лабораторная работа 6</title>
-        <style>
-            main {
-                border: 2px solid #99c;
-                padding: 20px;
-                max-width: 900px;
-                margin: auto;
-                color: black;
-                text-align: center;
-            }
-        
-            #chart {
-                display: flex;
-                align-items: flex-end;
-                height: 250px;
-                border-bottom: 2px solid black;
-                margin-bottom: 20px;
-            }
-            .bar {
-                position: relative;
-                width: 50px;
-                margin: 0 4px;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-            }
-            .min-temp {
-                background-color: rgb(84, 84, 227);
-                width: 100%;
-            }
-            .max-temp {
-                background-color: rgb(218, 101, 101);
-                width: 100%;
-            }
-            .bar.selected .min-temp {
-                background-color: coral; 
-            }
-        
-            .bar.selected .max-temp {
-                background-color: pink;
-            }
-            .temp-label {
-                position: absolute;
-                color: black;
-                font-size: 10px;
-                top: -10px;
-                font-weight: bold;
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../main.css">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="../favicon-32x32.png">
+    <link rel="icon" href="../favicon.ico">
+    <title>Лабораторная работа 6</title>
+    <style>
+        main {
+            border: 2px solid #99c;
+            padding: 20px;
+            max-width: 900px;
+            margin: auto;
+            color: black;
+            text-align: center;
+        }
+
+        #chart {
+            display: flex;
+            align-items: flex-end;
+            height: 250px;
+            border-bottom: 2px solid black;
+            margin-bottom: 20px;
+        }
+
+        .bar {
+            position: relative;
+            width: 50px;
+            margin: 0 4px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .min-temp {
+            background-color: rgb(84, 84, 227);
+            width: 100%;
+        }
+
+        .max-temp {
+            background-color: rgb(218, 101, 101);
+            width: 100%;
+        }
+
+        .bar.selected .min-temp {
+            background-color: coral; 
+        }
+
+        .bar.selected .max-temp {
+            background-color: pink;
+        }
+
+        .temp-label {
+            position: absolute;
+            color: black;
+            font-size: 10px;
+            top: -15px;
+            font-weight: bold;
+        }
+
+        #info {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        #info span {
+            display: block;
+            margin-top: 4px; 
+        }
+    </style>
+    <script>
+        let temperatures = [];
+        let previous = null;
+    
+        function showTemp() {
+            const chart = document.getElementById('chart');
+            const info = document.getElementById('info');
+    
+            // Генерация случайных температур
+            for (let i = 0; i < 30; i++) {
+                const min = Math.floor(Math.random() * 15) + 5;
+                const max = min + Math.floor(Math.random() * 10) + 1;
+                temperatures.push({ min: min, max: max });
             }
     
-            #info {
-                margin-top: 10px;
-                font-weight: bold;
+            // Создание графика
+            for (let i = 0; i < temperatures.length; i++) {
+                let temp = temperatures[i];
+    
+                const bar = document.createElement('div');
+                bar.className = 'bar';
+                const maxHeight = 350;
+                const maxPossible = 40;
+                const heightRatio = maxHeight / maxPossible;
+    
+                const minBar = document.createElement('div');
+                minBar.className = 'min-temp';
+                minBar.style.height = (temp.min * heightRatio) + 'px';
+    
+                const maxBar = document.createElement('div');
+                maxBar.className = 'max-temp';
+                maxBar.style.height = ((temp.max - temp.min) * heightRatio) + 'px';
+    
+                const maxLabel = document.createElement('div');
+                maxLabel.className = 'temp-label';
+                maxLabel.textContent = temp.max + '°C';
+    
+                const minLabel = document.createElement('div');
+                minLabel.className = 'temp-label';
+                minLabel.textContent = temp.min + '°C';
+                minLabel.style.top = ((temp.max - temp.min) * heightRatio - 10) + 'px';
+    
+                bar.appendChild(maxLabel);
+                bar.appendChild(minLabel);
+                bar.appendChild(maxBar);
+                bar.appendChild(minBar);
+                chart.appendChild(bar);
             }
-        
-            #info span {
-                display: block;
-                margin-top: 4px; 
-            }
-        </style>
-        <script>
-            let temperatures = [];
-            let previous = null;
-
-            function showTemp() {
-                const chart = document.getElementById('chart');
-                const info = document.getElementById('info');
-
-                // Генерация случайных температур
-                for (let i = 0; i < 30; i++) {
-                    const min = Math.floor(Math.random() * 15) + 5;
-                    const max = min + Math.floor(Math.random() * 10) + 1; 
-                    temperatures.push({ min, max });
-                }
-
-                // Создание графика
-                temperatures.forEach((temp, i) => { 
-                    const bar = document.createElement('div');
-                    bar.className = 'bar';
-                    const maxHeight = 350;
-                    const maxPossible = 40;
-                    const heightRatio = maxHeight / maxPossible;
-
-                    const minBar = document.createElement('div');
-                    minBar.className = 'min-temp';
-                    minBar.style.height = (temp.min * heightRatio) + 'px'; 
-
-                    const maxBar = document.createElement('div');
-                    maxBar.className = 'max-temp';
-                    maxBar.style.height = ((temp.max - temp.min) * heightRatio) + 'px';
-
-                    const maxLabel = document.createElement('div');
-                    maxLabel.className = 'temp-label';
-                    maxLabel.textContent = `${temp.max}°C`;
-                    
-                    const minLabel = document.createElement('div');
-                    minLabel.className = 'temp-label';
-                    minLabel.textContent = `${temp.min}°C`;
-                    minLabel.style.top = `${(temp.max - temp.min) * heightRatio - 10}px`;
-
-                    bar.appendChild(maxLabel);
-                    bar.appendChild(minLabel)
-                    bar.appendChild(maxBar);
-                    bar.appendChild(minBar);
-                    chart.appendChild(bar);
-                });
-
-            }
-
-            function findBtn() {
-                const value = parseInt(document.getElementById('dayInput').value);
-                if (value < 1 || value > 30) return;
-
-                const chart = document.getElementById('chart');
-                const info = document.getElementById('info');
-                const index = value - 1;
-
-                // Снимаем выделение с предыдущего столбика
-                if (previous !== null) {
-                    chart.children[previous].classList.remove('selected');
-                }
-
-                // Выделяем новый столбик
-                const bar = chart.children[index];
-                bar.classList.add('selected');
-                previous = index;
-
-                // Выводим информацию о температуре
-                const { min, max } = temperatures[index];
-                info.innerHTML = `
-                    <span>Минимальная температура: ${min}°C</span>
-                    <span>Максимальная температура: ${max}°C</span>
-                `;
-            }
-        </script>
-    </head>
-    <body onload="showTemp()">
-        <header>НГТУ, Лабораторная работа 6</header>
-        <main>
-            <h2>Температура по дням</h2>
-            <div id="chart"></div>
-            <div>
-                <label>Введите номер дня (от 1 до 30): </label>
-                <input type="number" id="dayInput" min="1" max="30">
-                <button onclick="findBtn()">найти</button>
-            </div>
-            <div id="info"></div>
-        </main>
-        <footer>
-            &copy; Жанна Азарян, ФБИ-32, 2 курс 2925
-        </footer>
-    </body>
+        }
+    
+        function findBtn() {
+            const value = parseInt(document.getElementById('dayInput').value);
+            if (value < 1 || value > 30) return;
+    
+            const chart = document.getElementById('chart');
+            const info = document.getElementById('info');
+            const index = value - 1;
+    
+            const bar = chart.children[index];
+            bar.classList.add('selected');
+            previous = index;
+    
+            const min = temperatures[index].min;
+            const max = temperatures[index].max;
+            info.innerHTML =
+                '<span>Минимальная температура: ' + min + '°C</span>' +
+                '<span>Максимальная температура: ' + max + '°C</span>';
+        }
+    </script>
+    
+</head>
+<body onload="showTemp()">
+    <header>НГТУ, Лабораторная работа 6</header>
+    <main>
+        <h2>Температура по дням</h2>
+        <div id="chart"></div>
+        <div>
+            <label>Введите номер дня (от 1 до 30): </label>
+            <input type="number" id="dayInput" min="1" max="30">
+            <button onclick="findBtn()">Найти</button>
+        </div>
+        <div id="info"></div>
+    </main>
+    <footer>
+        &copy; Жанна Азарян, ФБИ-32, 2 курс 2925
+    </footer>
+</body>
 </html>
