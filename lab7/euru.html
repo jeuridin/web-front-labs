@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../main.css">
+        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+        <link rel="icon" href="../favicon-32x32.png">
+        <link rel="icon" href="../favicon.ico">
+        <title>Курс евро</title>
+        <script>
+            function getEuroExchangeRate() {
+                const euro = document.getElementById('euro');
+                const date = document.getElementById('date');
+                const url = 'https://www.cbr-xml-daily.ru/daily_json.js';
+                fetch(url)
+                    .then(function(response){
+                        return response.json();
+                    })
+                    .then(function(json){
+                        raznica = json.Valute.EUR.Value - json.Valute.EUR.Previous
+                        let raz = document.getElementById('raz')
+                        if(raznica<0) {
+                            raz.innerText = 'Курс опустился'
+                        } else {
+                            raz.innerHTML = 'Курс поднялся'
+                        }
+                        euro.innerHTML = `Курс евро: ${json.Valute.EUR.Value}<br>
+                            Дата: ${json.Date.split("T")[0]}<br>
+                            Курс вчерашнего дня: ${json.Valute.EUR.Previous}<br>
+                            Разница: ${raznica.toFixed(2)}<br>
+
+                        `
+                    })
+            }
+        </script>
+        <style>
+            #euro, #raz {
+                color: black;
+                font-size: 20px;
+            }
+        </style>
+    </head>
+    <body>
+        <header>НГТУ, ФБ, Лабораторная работа 7</header>
+        <main>
+            <button onclick="getEuroExchangeRate()">Получить курс евро</button>
+            <div id="euro"></div>
+            <div id="raz"></div>
+            <a href="https://www.cbr-xml-daily.ru/">Курсы валют, API</a><br>
+            <a href="https://www.cbr-xml-daily.ru/">API для курсов ЦБ РФ</a><br>
+            <a href="https://www.cbr-xml-daily.ru/">Виджет курсов валют</a><br>
+            <a href="https://www.cbr-xml-daily.ru/">Курсы ЦБ РФ в XML и JSON, API</a><br>
+        </main>
+        <footer>
+            &copy; Жанна Азарян, ФБИ-32, 2 курс, 2025
+        </footer>
+    </body>
+</html>
