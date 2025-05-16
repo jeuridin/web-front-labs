@@ -23,7 +23,7 @@
                         extraClass += ' outofstock';
                     }
                     bookList.innerHTML += `
-                        <div class='book ${extraClass}'>
+                        <div class='${ extraClass }'>
                             <b>${ books[i].author }.</b>
                             <i>${ books[i].name }</i>
                             &mdash; ${ books[i].publicationYear }
@@ -40,7 +40,7 @@
                 gap: 15px;
                 color: black;
             }
-            .book {
+            .books {
                 padding: 15px;
                 border-radius: 10px;
             }
