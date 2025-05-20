@@ -7,18 +7,19 @@
         <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
         <link rel="icon" href="../favicon-32x32.png">
         <link rel="icon" href="../favicon.ico">
-        <title>Лабораторная работа 7</title>
+        <title>Погода</title>
+        <script>
+            function getForecast() {
+                let url = 'https://api.open-meteo.com/v1/forecast?latitude=55.0415&longitude=82.9346&hourly=temperature_2m&timezone=Asia%2FBangkok';
+                fetch(url)
+                    .then(resp => resp.json())
+            }
+        </script>
     </head>
     <body>
         <header>НГТУ, ФБ, Лабораторная работа 7</header>
         <main>
-            <ul>
-                <li><a href="blocks.html">Добавление блоков</a></li>
-                <li><a href="dollar.html">Курс доллара</a></li>
-                <li><a href="kotir.html">Котировки акций компании ИНТЕР РАО</a></li>
-                <li><a href="euru.html">Курс евро</a></li>
-                <li><a href="pogoda.html">Погода</a></li>
-            </ul>
+            <div id="pogoda"></div>
         </main>
         <footer>&copy; Жанна Азарян, ФБИ-32, 2 курс, 2025</footer>
     </body>
