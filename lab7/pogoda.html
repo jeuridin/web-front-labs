@@ -10,16 +10,61 @@
         <title>Погода</title>
         <script>
             function getForecast() {
-                let url = 'https://api.open-meteo.com/v1/forecast?latitude=55.0415&longitude=82.9346&hourly=temperature_2m&timezone=Asia%2FBangkok';
-                fetch(url)
-                    .then(resp => resp.json())
+            let url = 'https://api.open-meteo.com/v1/forecast?latitude=55.0415&longitude=82.9346&hourly=temperature_2m&timezone=Asia%2FBangkok';
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    let times = data.hourly.time;
+                    let temps = data.hourly.temperature_2m;
+
+                    let today = new Date().toISOString().split('T')[0];
+                    let hours = ['08:00', '12:00', '20:00'];
+                    let result = 'Температура сегодня:<br>';
+
+                    for (let i = 0; i < hours.length; i++) {
+                        let hour = hours[i];
+                        let fullTime = today + 'T' + hour;
+                        let index = times.indexOf(fullTime);
+                        if (index !== -1) {
+                            result += hour + ' — ' + temps[index] + '°C<br>';
+                        } else {
+                            result += hour + ' — нет данных<br>';
+                        }
+                        }
+                    document.getElementById('pogoda').innerHTML = result;
+                });
             }
         </script>
+        <style>
+            .center {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                border: 4px solid rgb(0, 0, 0);
+                border-radius: 30px;
+                width: 350px;
+                padding: 20px;   
+            }
+            main {
+                color: #000;
+            }
+            #pogoda {
+                margin-top: 10px;
+            }
+            h2 {
+                font-family: Georgia;
+            }
+        </style>
     </head>
     <body>
         <header>НГТУ, ФБ, Лабораторная работа 7</header>
         <main>
-            <div id="pogoda"></div>
+            <div class="center">
+                <h2>Погода в Новосибирске</h2>
+                <button onclick="getForecast()">Вывести погоду</button>
+                <div id="pogoda"></div>
+            </div>
         </main>
         <footer>&copy; Жанна Азарян, ФБИ-32, 2 курс, 2025</footer>
     </body>
