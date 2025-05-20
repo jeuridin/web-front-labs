@@ -31,7 +31,7 @@
                         const formattedDate = today.toISOString().slice(0, 10);
                         
                         euro.innerHTML = `Курс евро: ${json.Valute.EUR.Value}<br>
-                            Дата: ${json.Date.split("T")[0]}<br>
+                            Дата: ${formattedDate}<br>
                             Курс вчерашнего дня: ${json.Valute.EUR.Previous}<br>
                             Разница: ${raznica.toFixed(2)}<br>
 
