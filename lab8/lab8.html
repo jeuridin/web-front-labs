@@ -26,6 +26,13 @@
                 <div>Имя: {{ user.name }}</div>
                 <div>Возраст: {{ user.age }}</div>
                 <div>Телефон: {{ user.tel }}</div>
+
+                <h2>Цветы</h2>
+                <ul>
+                    <li v-for="(flower, id) in flowers">
+                        {{ flower }} <button @click="edit(id, flower)">?</button>
+                    </li>
+                </ul>
             </div>
         </main>
         <footer>&copy; Жанна Азарян, ФБИ-32, 2 курс, 2025</footer>
@@ -42,6 +49,10 @@
                             age: '18',
                             tel: '222-33-44'
                         },
+                        flowers: ['роза', 'тюльпан', 'маргаритка', 'георгин', 'одуванчик'],
+                        a: 1,
+                        b: 10,
+                        result: '',
                     }
                 },
                 methods: {
@@ -50,7 +61,11 @@
                     },
                     decCounter() {
                         this.counter--;
-                    }
+                    },
+                    edit(id, flower) {
+                        let newName = prompt('Введите имя цветка:', flower);
+                        this.flowers[id] = newName;
+                    },
                 }
             }).mount('#app');
         </script>
