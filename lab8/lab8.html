@@ -27,19 +27,55 @@
                 <div>Возраст: {{ user.age }}</div>
                 <div>Телефон: {{ user.tel }}</div>
 
+                <div class="card" style="width: 18rem;">
+                    <div class="card-body">
+                        <h2 class="card-title">Цветы</h2>
+                        <ul class="list-group">
+                            <li v-for="(flower, id) in flowers" class="list-group-item">
+                                {{ flower }} ({{ id }}) <button @click="edit(id, flower)">?</button>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <hr>
                 <h2>Цветы</h2>
-                <ul>
-                    <li v-for="(flower, id) in flowers">
-                        {{ flower }} <button @click="edit(id, flower)">?</button>
-                    </li>
-                </ul>
+                <table class="table table-danger">
+                    <thead>
+                        <tr>
+                            <th>Название</th>
+                            <th>Редактировать</th>
+                        </tr>
+                    </thead>
+                    <tr v-for="(flower, id) in flowers">
+                        <td>
+                            <span v-if="flower === null">загружается..</span>
+                            <span v-else>{{ flower }}</span>
+                        </td>
+                        <td>
+                            <button @click="edit(id, flower)" class="btn btn-primary" v-if="flower !==null">
+                                <i class="bi bi-pen"></i>
+                            </button>
+                            <div class="spinner-border" role="status" v-if="flower === null"></div>
+                        </td>
+                    </tr>
+                </table>
                 <hr>
                 <h2>Калькулятор</h2>
-                <input type="number" v-model="a">
-                +
-                <input type="number" v-model="b">
-                <button @click="sum" class="btn btn-primary">=</button>
-                <span> {{ result }}</span>
+                <div class="row g-5">
+                    <div class="col-auto">
+                        <input type="number" v-model="a" class="form-control">
+                    </div>
+                    +
+                    <div class="col-auto">
+                        <input type="number" v-model="b" class="form-control">
+                    </div>
+                    <div class="col-auto">
+                        <button @click="sum" class="btn btn-primary">=</button>
+                    </div>
+                    <div class="col-auto">
+                        <span class="badge text-bg-primary fs-5"> {{ result }}</span>
+                    </div>
+                </div>
             </div>
         </main>
         <footer>&copy; Жанна Азарян, ФБИ-32, 2 курс, 2025</footer>
