@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../main.css">
+        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+        <link rel="icon" href="../favicon-32x32.png">
+        <link rel="icon" href="../favicon.ico">
+        <title>Дополнительное задаание</title>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script>
+            function getPogoda() {
+                let url = 'https://api.open-meteo.com/v1/forecast?latitude=55.0415&longitude=82.9346&hourly=temperature_2m,relative_humidity_2m&current=temperature_2m,relative_humidity_2m&timezone=auto&past_days=1&forecast_days=1';
+                let info = document.getElementById('info')
+                fetch(url)
+                    .then(response => response.json())
+                    .then(data => { 
+                        let temps = data.current.temperature_2m;
+                        let vlazh = data.current.relative_humidity_2m;
+                        info.innerHTML = `
+                            <h2>Прогноз погоды в Новосибирске</h2>
+                            Температура сегодня: ${temps} °C <br>
+                            Влажность сегодня: ${vlazh} % <br>
+                        `;
+                        const hourlyData = data.hourly;
+                        const timeLabels = hourlyData.time.map(function(time) { return new Date(time).toLocaleString() });
+                        
+                        const tempData = hourlyData.temperature_2m;
+                        const humidityData = hourlyData.relative_humidity_2m;
+
+                        const ctx = document.getElementById('weatherChart').getContext('2d');
+                        const weatherChart = new Chart(ctx, {
+                            type: 'bar',
+                            data: {
+                                labels: timeLabels,
+                                datasets: [{
+                                    label: 'Температура (°C)',
+                                    data: tempData,
+                                    backgroundColor: 'rgba(17, 0, 255, 0.515)',
+                                    borderColor: 'rgba(17, 0, 255, 0.515)'
+                                }, {
+                                    label: 'Влажность (%)',
+                                    data: humidityData,
+                                    backgroundColor: 'rgba(255, 0, 0, 0.515)',
+                                    borderColor: 'rgba(255, 0, 0, 0.515)'
+                                }]
+                            },
+                        });
+                    })
+            }
+        </script>
+        <style>
+            .pogoda {
+                color: brown;
+                text-align: center;
+                font-family: 'Gill Sans';
+                font-size: 23px;
+            }
+            .chart-container {
+                border: 5px solid rgba(255, 0, 0, 0.515);
+                border-radius: 20px;
+                background-color: white;
+                margin-top: 10px;
+            }
+        </style>
+    </head>
+    <body onload="getPogoda()">
+        <header>НГТУ, ФБ, Лабораторная работа 7</header>
+        <main>
+            <div class="pogoda">
+                <div id="info"></div>
+                <div class="chart-container">
+                    <canvas id="weatherChart"></canvas>
+                </div>
+            </div>
+        </main>
+        <footer>&copy; Жанна Азарян, ФБИ-32, 2 курс, 2025</footer>
+    </body>
+</html>
