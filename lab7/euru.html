@@ -19,27 +19,27 @@
                         return response.json();
                     })
                     .then(function(json){
-                        raznica = json.Valute.EUR.Value - json.Valute.EUR.Previous;
-                        let euro = document.getElementById('euro');
-                        if(raznica<0) {
-                            euro.innerText = 'Курс опустился';
-                        } else if(raznica>0){
-                            euro.innerHTML = 'Курс поднялся';
-                        } else {
-                            euro.innerHTML = 'Курс не изменился';
-                        }
-                       
+                        let raznica = json.Valute.EUR.Value - json.Valute.EUR.Previous;
+
                         const today = new Date();
                         const formattedDate = today.toISOString().slice(0, 10);
-                        
+
                         euro.innerHTML = `<b>Курс евро</b>: ${json.Valute.EUR.Value}<br>
                             <b>Дата</b>: ${formattedDate}<br>
                             <b>Курс вчерашнего дня</b>: ${json.Valute.EUR.Previous}<br>
-                            <b>Разница</b>: ${raznica.toFixed(2)}<br>
-                        `;
+                            <b>Разница</b>: ${raznica.toFixed(2)}<br>`;
+
+                        if (raznica < 0) {
+                            euro.innerHTML += 'Курс опустился';
+                        } else if (raznica > 0) {
+                            euro.innerHTML += 'Курс поднялся';
+                        } else {
+                            euro.innerHTML += 'Курс не изменился';
+                        }
+
                         euro.style.display = 'block';
-                    })
-                
+                    });
+
             }
         </script>
         <style>
