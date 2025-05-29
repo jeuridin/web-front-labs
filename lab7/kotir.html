@@ -13,9 +13,6 @@
                 const table = document.getElementById('lol');
                 const button = document.querySelector('button');
                 const detail = document.getElementById('detail');
-                table.innerHTML = ''; // очищаем таблицу перед повторным созданием
-            detail.innerHTML = '';
-                
                 const date = [
                     '01.05.2025', '02.05.2025', '05.05.2025', '06.05.2025', '07.05.2025',
                     '08.05.2025', '12.05.2025', '13.05.2025', '14.05.2025', '15.05.2025'
@@ -60,7 +57,7 @@
 
                     row.appendChild(diffCell);
 
-                    // Добавляем строку в таблицу
+
                     table.appendChild(row);
                     let sum = 0;
                     for (let i = 0; i < price.length; i++) {
@@ -71,9 +68,9 @@
                     let min = Math.min(...price).toFixed(2);
 
                     detail.innerHTML = `
-                        Средняя цена: ${avg} руб.
-                        Максимальная цена: ${max} руб.
-                        <p>Минимальная цена: ${min} руб.
+                        Средняя цена: ${avg} руб.<br>
+                        Максимальная цена: ${max} руб.<br>
+                        Минимальная цена: ${min} руб.
                     `;
                 }
                     
