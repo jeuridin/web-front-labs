@@ -14,8 +14,10 @@
                 let url = 'https://api.open-meteo.com/v1/forecast?latitude=55.0415&longitude=82.9346&hourly=temperature_2m,relative_humidity_2m&current=temperature_2m,relative_humidity_2m&timezone=auto&past_days=1&forecast_days=1';
                 let info = document.getElementById('info')
                 fetch(url)
-                    .then(response => response.json())
-                    .then(data => { 
+                    .then(function(response){
+                        return response.json();
+                    })
+                    .then(function(data) { 
                         let temps = data.current.temperature_2m;
                         let vlazh = data.current.relative_humidity_2m;
                         info.innerHTML = `
